@@ -14,4 +14,4 @@ const ItemSchema = new Schema(
     },
     { timestamps: true }
 );
-module.exports = mongoose.model('item', ItemSchema)
+module.exports = mongoose.model('Item', ItemSchema)

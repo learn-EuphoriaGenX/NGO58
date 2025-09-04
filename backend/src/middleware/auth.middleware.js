@@ -14,6 +14,8 @@ const auth = async (req, res, next) => {
         if (!req.user) return res.status(401).json({ message: 'Invalid token user' });
         next();
     } catch (e) {
+        console.log(e);
+        
         return res.status(401).json({ message: 'Unauthorized', error: e.message });
     }
 };

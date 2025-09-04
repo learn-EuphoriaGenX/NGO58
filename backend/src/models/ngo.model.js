@@ -13,4 +13,4 @@ const NgoSchema = new Schema(
     { timestamps: true }
 );
 
-module.exports = mongoose.model('ngo', NgoSchema)
+module.exports = mongoose.model('Ngo', NgoSchema)

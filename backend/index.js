@@ -22,6 +22,8 @@ const auth = require('./src/routes/auth')
 app.use("/api/auth", auth)
 const ngo = require('./src/routes/ngo')
 app.use("/api/ngo", ngo)
+const admin = require("./src/routes/admin")
+app.use("/api/admin", admin)
 
 
 connectDb()
