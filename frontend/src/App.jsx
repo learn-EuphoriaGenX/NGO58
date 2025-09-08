@@ -9,6 +9,10 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import BACKENDURL from "./config/url.config";
+import PublishItem from "./pages/PublishItem";
+import MyItems from "./pages/MyItems";
+import AllItems from "./pages/AllItems";
+import Recieved from "./pages/Recieved";
 
 function App() {
     const [user, setUser] = useState({});
@@ -27,13 +31,14 @@ function App() {
                         }
                     );
 
-                    
-                    localStorage.setItem("token", res.data.token);
+
+                    localStorage.setItem('userid', res.data.user.id)
+
                     setUser(res.data.user);
+                    localStorage.setItem("token", res.data.token);
                 } catch (err) {
                     console.error(err);
                     toast.error(err.response?.data?.message || "Session expired");
-                    setUser({});
                     localStorage.removeItem("token");
                 }
             }
@@ -47,9 +52,13 @@ function App() {
             <ToastContainer />
             <Header user={user} setUser={setUser} />
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Home user={user} />} />
                 <Route path="/login" element={<Login user={user} setUser={setUser} />} />
                 <Route path="/register" element={<Register user={user} />} />
+                <Route path="/publish" element={<PublishItem />} />
+                <Route path="/myitems" element={<MyItems user={user} />} />
+                <Route path="/allitems" element={<AllItems />} />
+                <Route path="/recieved" element={<Recieved />} />
             </Routes>
         </>
     );

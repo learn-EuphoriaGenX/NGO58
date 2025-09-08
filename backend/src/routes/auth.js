@@ -11,7 +11,9 @@ const issueToken = (user) =>
 
 router.post('/register', async (req, res) => {
     try {
-        const { name, email, password, role = 'VOLUNTEER', phone, city, type, ngoName, ngoRegNo, ngoAddress } = req.body;
+        console.log(req.body);
+
+        const { name, email, password, role = 'VOLUNTEER', phone, city, ngoType, ngoName, ngoRegNo, ngoAddress } = req.body;
         if (!name || !email || !password) return res.status(400).json({ message: 'name, email, password required' });
 
 
@@ -22,7 +24,7 @@ router.post('/register', async (req, res) => {
         const passwordHash = await bcrypt.hash(password, 10);
         const user = new User({ name, email, passwordHash, role, phone, city });
         if (role === 'NGO') {
-            const ngo = await Ngo.create({ name: ngoName || `${name}'s NGO`, regNo: ngoRegNo, type: type, address: ngoAddress, owner: user._id });
+            const ngo = await Ngo.create({ name: ngoName || `${name}'s NGO`, regNo: ngoRegNo, type: ngoType, address: ngoAddress, owner: user._id });
             user.ngo = ngo._id;
         }
         await user.save();

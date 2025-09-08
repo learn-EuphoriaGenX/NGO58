@@ -13,6 +13,7 @@ export default function Register({ user }) {
         role: "VOLUNTEER",
         ngoName: "",
         ngoRegNo: "",
+        ngoType: "",
         ngoAddress: ""
     });
 
@@ -101,13 +102,13 @@ export default function Register({ user }) {
                                 }}
                                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
                             >
-                                <option value="volunteer">Volunteer</option>
-                                <option value="ngo">NGO</option>
+                                <option value="VOLUNTEER">Volunteer</option>
+                                <option value="NGO">NGO</option>
                             </select>
                         </div>
 
                         {/* NGO Extra Fields */}
-                        {role === "ngo" && (
+                        {role === "NGO" && (
                             <>
                                 <div>
                                     <label className="block text-gray-600 mb-1">NGO Name</label>
@@ -120,6 +121,23 @@ export default function Register({ user }) {
                                         required
                                         className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
                                     />
+                                </div>
+                                <div>
+                                    <label className="block text-gray-600 mb-1">NGO Type</label>
+                                    <select
+                                        name="ngoType"
+                                        value={data.ngoType}
+                                        onChange={(e) => {
+                                            setData({ ...data, ngoType: e.target.value });
+                                        }}
+                                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
+                                    >
+                                        <option value="Charity">Charity</option>
+                                        <option value="Non-Profit">Non-Profit</option>
+                                        <option value="Foundation">Foundation</option>
+                                        <option value="Trust">Trust</option>
+                                    </select>
+
                                 </div>
                                 <div>
                                     <label className="block text-gray-600 mb-1">NGO Registration No</label>
